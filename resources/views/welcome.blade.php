@@ -73,7 +73,7 @@
                 </style>
 
                 <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdWeropAAAAAHD1gHBzR9-cXx0ttNgPv27Uw5kZ"></script> -->
-                <form id="StartForm" method="post">
+                <form id="StartForm" method="get">
                     @csrf
                     <input name="__RequestVerificationToken" type="hidden" value="CfDJ8K54_zVZXGVBjTw5jv_bcfjpMzAx80WplwiUQaD4irOgpvBo-qB8NF3o3a0JiELjJUZG7u0dEVKwirfNonflL9B2hdJmT73HodY8mnnujMIpaAs-1wlQWf8x5G4uHUqkLcceIpts3JuTRcm4FhwajZk">
                     <div class="row text-lg-center">
@@ -187,7 +187,7 @@
                         <div class="col-xl-2 col-lg-2 col-md-2 col-0"></div>
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 p-3 text-end">
                             <div><div data-style="none" style="width: 256px; height: 60px; position: fixed; visibility: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-hcaqrmx0vphj" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/enterprise/anchor?ar=1&amp;k=6LdWeropAAAAAHD1gHBzR9-cXx0ttNgPv27Uw5kZ&amp;co=aHR0cHM6Ly9yZXBvcnRhY29sbGlzaW9uLmNvbTo0NDM.&amp;hl=en&amp;v=i7X0JrnYWy9Y_5EYdoFM79kV&amp;size=invisible&amp;sa=submit&amp;cb=py2wle24t2f4"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
-                            <button  onClick="submitForm()" id="SubmitBtn" style="display: none;" type="submit" class="g-recaptcha btn btn-lg btn-fw w-auto btn-success bg-sfh-green">
+                            <button  onClick="submitForm()" id="SubmitBtn" style="display: none;" type="button" class="g-recaptcha btn btn-lg btn-fw w-auto btn-success bg-sfh-green">
                                 Continue <i class="bi bi-arrow-right-circle"></i>
                             </button>
 
@@ -201,7 +201,6 @@
     </div>
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     function onProvinceChange(location) {
         $.ajax({
@@ -225,22 +224,16 @@
     }
 
     function submitForm() {
-        console.log('submitting a form');
         $.ajax({
-            dataType: 'json',
-            type:'POST',
+            type:'GET',
             url:'/startPost',
             data: {
                 _token: "{!! csrf_token() !!}"
             },
             success:function(data) {
+                $("body").html(data);
             }
         });
     }
-
-    $("#company_form_btn").click(function(e) {
-        e.preventDefault();
-        console.log('submitting a form');
-    });
 
 </script>

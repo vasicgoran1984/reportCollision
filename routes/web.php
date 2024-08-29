@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\CityController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/getCity', 'App\Http\Controllers\CityController@index');
-Route::post('startPost', 'App\Http\Controllers\AgreementController@index');
+Route::get('startPost', 'App\Http\Controllers\AgreementController@index');
+Route::get('startReport', 'App\Http\Controllers\PrequalificationController@index');
 

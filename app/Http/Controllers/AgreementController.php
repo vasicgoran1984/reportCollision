@@ -8,6 +8,6 @@ class AgreementController extends Controller
 {
     public function index()
     {
-        return 'agreement';
+        return view('agreement');
     }
 }

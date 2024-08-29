@@ -16,12 +16,7 @@ class CityController extends Controller
     {
         if ($request->ajax()) {
             $city = City::select('city_name')->where('location_id', $request->locationId)->get();
-            //dd($province);
-            // echo '<pre>';
-            // print_r($province);
-            // echo '</pre>';
-            // die('f');
-            // return 'yes';
+            
             return response()->json([
                 'status'   => 'success',
                 'city' => $city,
