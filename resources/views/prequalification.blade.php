@@ -324,7 +324,7 @@
                     <div class="col-12 pt-2">
 
                         <a href="/Report/NavigateBack/2" class="btn btn-lg btn-secondary w-100 bg-sfh-maroon float-start w-auto"> <i class="bi bi-arrow-left-circle"></i> Back</a>
-                        <button type="submit" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
+                        <button type="button" onClick="submitForm()" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
                     </div>
                 </div>
             </form>
@@ -344,6 +344,7 @@
         $("#PedestriansDiv").show();
         $("#CyclistsDiv").show();
         $("#FailToRemainDiv").hide();
+        $("#HasDriverLicenceDiv").hide();
     });
 
     $("#Passengers1").change(function() {
@@ -375,7 +376,7 @@
         $("#WitnessesCountDiv").show();
     });
 
-    $("#Witnesses").change(function() {
+    $("#Witnesses0").change(function() {
         $("#WitnessesCountDiv").hide();
     });
 
@@ -388,6 +389,19 @@
         $("#CyclistsDiv").hide();
         $("#PedestriansDiv").hide();
         $("#FailToRemainDiv").show();
+        $("#HasDriverLicenceDiv").show();
     });
-    ReportType2
+    
+    function submitForm() {
+        $.ajax({
+            type:'GET',
+            url:'/information',
+            data: {
+                _token: "{!! csrf_token() !!}"
+            },
+            success:function(data) {
+                $("body").html(data);
+            }
+        });
+    }
 </script>
