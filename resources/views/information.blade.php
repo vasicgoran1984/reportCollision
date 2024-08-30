@@ -30,7 +30,7 @@
                         <h2 class="sfh-heading"><b><i class="bi bi-info-circle-fill"></i> Your Information</b></h2>
                     Please provide your details.
                     <hr>
-                
+
 
                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EuPeuubNPVMtgIlonMQjI9s-sbSDLGfHVvM1RSmQ7vatNOw-bijV2nQSGNsNmj314kujWk2cIGTXTQJASWJ6tkOeAdX6iM-961B1WKDW-pW4pdO0JU1DeJHBNQWOWo3EMVcjclbgke-pj6fRtG1yWo">
                         <div class="row">
@@ -117,7 +117,7 @@
                                     Apartment/Unit
                                 </div>
                                 <div style="min-height: 33px;" class="col-8 col-lg-12 float-start fw-bold pb-2 pt-3 pb-lg-2 ps-lg-1 pt-lg-0 text-danger fsize16">
-                                    
+
                                 </div>
                                 <div class="col-12 float-start">
                                     <input id="Address2" name="Address2" type="text" class="form-control" maxlength="10" disabled="">
@@ -156,8 +156,8 @@
             </div>
         </div>
             <div class="col-12  p-lg-3 pt-lg-4 pt-3">
-                <a href="/Report/NavigateBack/3" class="btn btn-lg btn-secondary w-100 bg-sfh-maroon float-start w-auto"> <i class="bi bi-arrow-left-circle"></i> Back</a>
-            <button id="submitbtn" type="submit" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
+                <a href="{{ route('backPrequalification') }}" class="btn btn-lg btn-secondary w-100 bg-sfh-maroon float-start w-auto"> <i class="bi bi-arrow-left-circle"></i> Back</a>
+            <button id="submitbtn" type="button" onClick="submitForm()" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
         </div>
         </form>
     </div>
@@ -194,7 +194,7 @@ $(document).ready(function () {
         }
     }
 
-    // Phone Number 
+    // Phone Number
     $('#phoneNumber')
 
 	.keydown(function (e) {
@@ -203,12 +203,12 @@ $(document).ready(function () {
 
     // Don't let them remove the starting '('
     if ($phone.val().length === 1 && (key === 8 || key === 46)) {
-			$phone.val('('); 
+			$phone.val('(');
       return false;
-		} 
+		}
     // Reset if they highlight and type over first char.
     else if ($phone.val().charAt(0) !== '(') {
-			$phone.val('('+String.fromCharCode(e.keyCode)+''); 
+			$phone.val('('+String.fromCharCode(e.keyCode)+'');
 		}
 
 		// Auto-format- do not expose the mask as the user begins to type
@@ -218,23 +218,23 @@ $(document).ready(function () {
 			}
 			if ($phone.val().length === 5) {
 				$phone.val($phone.val() + ' ');
-			}			
+			}
 			if ($phone.val().length === 9) {
 				$phone.val($phone.val() + '-');
 			}
 		}
 
 		// Allow numeric (and tab, backspace, delete) keys only
-		return (key == 8 || 
+		return (key == 8 ||
 				key == 9 ||
 				key == 46 ||
 				(key >= 48 && key <= 57) ||
-				(key >= 96 && key <= 105));	
+				(key >= 96 && key <= 105));
 	})
-	
+
 	.bind('focus click', function () {
 		$phone = $(this);
-		
+
 		if ($phone.val().length === 0) {
 			$phone.val('(');
 		}
@@ -243,10 +243,10 @@ $(document).ready(function () {
 			$phone.val('').val(val); // Ensure cursor remains at the end
 		}
 	})
-	
+
 	.blur(function () {
 		$phone = $(this);
-		
+
 		if ($phone.val() === '(') {
 			$phone.val('');
 		}
@@ -265,4 +265,17 @@ $(document).ready(function () {
         }
     });
 });
+
+function submitForm() {
+    $.ajax({
+        type:'GET',
+        url:'/drivers',
+        data: {
+            _token: "{!! csrf_token() !!}"
+        },
+        success:function(data) {
+            $("body").html(data);
+        }
+    });
+}
 </script>

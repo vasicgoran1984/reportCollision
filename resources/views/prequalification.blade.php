@@ -20,7 +20,7 @@
                                     <h2 class="sfh-heading"><b><i class="bi bi-ui-checks"></i> Prequalification</b></h2>
                                 <span>Provide the following information about you and the collision to determine your eligibility.</span>
                                 <hr>
-                            
+
 
                                     <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Py7Y-13A-RDoivckhA_F8ZIb74bk4Ocdc98bb1MIu7TA1spCCnGmZ-KzjgEKvBEeIHwpHf0tAx3WXXDTx9lMtm8Z2Oa2A5uh6YrrNOYw-sa3r-vXmbVTHhiiiPkfhlYJLlDgeq0Qp8OY1p6IXscM-c">
                                     <div class="row">
@@ -47,7 +47,7 @@
                                             <div class="col-12 float-start">
                                                 <input type="date" class="form-control mt-1" id="AccidentDate" name="AccidentDate" min="2024-05-31" max="2024-08-29" required="">
                                             </div>
-                                        
+
                                         </div>
                                         <div class="col-xl-3 col-12 pb-lg-3 pt-4 pt-lg-2">
                                             <h6><b>Accident Time<span class="text-danger">&nbsp;*</span></b></h6>
@@ -157,7 +157,7 @@
                                             <input type="radio" class="btn-check" name="HasDriverLicence" id="HasDriverLicence0" value="false" autocomplete="off">
                                             <label class="btn btn-outline-dark" for="HasDriverLicence0">No</label>
                                         </div>
-                                    
+
                                     </div>
                                     <div class="row">
                                         <div id="NumberOfVehiclesDiv" class="col-7" style="display: none;">
@@ -314,16 +314,16 @@
                                             <input type="radio" class="btn-check" name="FailToRemain" id="FailToRemain0" value="false" autocomplete="off">
                                             <label class="btn btn-outline-dark" for="FailToRemain0">No</label>
                                         </div>
-                                        
+
                                     </div>
 
-                            
+
                             </div>
                         </div>
                     </div>
                     <div class="col-12 pt-2">
 
-                        <a href="/Report/NavigateBack/2" class="btn btn-lg btn-secondary w-100 bg-sfh-maroon float-start w-auto"> <i class="bi bi-arrow-left-circle"></i> Back</a>
+                        <a href="{{ route('/') }}" class="btn btn-lg btn-secondary w-100 bg-sfh-maroon float-start w-auto"> <i class="bi bi-arrow-left-circle"></i> Back</a>
                         <button type="button" onClick="submitForm()" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
         $("#PassengersCountDiv").hide();
     });
 
-    
+
     $("#Cyclists1").change(function() {
         $("#CyclistsCountDiv").show();
     });
@@ -363,7 +363,7 @@
     $("#Cyclists0").change(function() {
         $("#CyclistsCountDiv").hide();
     });
-    
+
     $("#Pedestrians1").change(function() {
         $("#PedestriansCountDiv").show();
     });
@@ -391,7 +391,7 @@
         $("#FailToRemainDiv").show();
         $("#HasDriverLicenceDiv").show();
     });
-    
+
     function submitForm() {
         $.ajax({
             type:'GET',
