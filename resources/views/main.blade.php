@@ -17,11 +17,15 @@
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap-icons.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/chosen.css')}}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{{--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{asset('assets/js/chosen.jquery.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.inputmask.js')}}"></script>
+        <script src="{{asset('assets/js/select2.min.js')}}"></script>
 
     </head>
     <body>
