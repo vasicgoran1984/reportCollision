@@ -88,7 +88,7 @@
                         <form action="/Report/DriversPost" method="post">
                             <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EQZef4XDapKuknpLhlEo-L7rAj5I0X50ZEp0XYTQZa0HVFRZufEkL44r9UxiRAiVG4a9sfeg9Ed5lmDlLhoqKC62d7Yq1ktgWbL-e0EpBUzWGdxO5bn2AP-2jh6I2DBp3vf-lK9rDQOQ_aG6XnOhDY">
                             <a href="/Report/NavigateBack/6" class="btn btn-lg btn-secondary w-100 bg-sfh-maroon float-start w-auto"> <i class="bi bi-arrow-left-circle"></i> Back</a>
-                            <button type="button" onclick="NoOtherDriverAlert()" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
+                            <button type="button" onclick="submitForm()" class="btn btn-lg btn-success w-100 bg-sfh-green float-end w-auto">Next <i class="bi bi-arrow-right-circle"></i></button>
                         </form>
                     </div>
 
@@ -96,7 +96,7 @@
 
 
 
-                <div class="modal fade show" id="AddEditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="AddEditLabel" aria-modal="true" role="dialog" style="display: block;">
+                <div class="modal fade show" id="ModalPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="AddEditLabel" aria-modal="true" role="dialog" style="display: block;">
                     <div class="modal-dialog modal-xl">
                         <form id="AddEditForm" action="/Report/AddDriver" method="post">
                             <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EQZef4XDapKuknpLhlEo-L7rAj5I0X50ZEp0XYTQZa0HVFRZufEkL44r9UxiRAiVG4a9sfeg9Ed5lmDlLhoqKC62d7Yq1ktgWbL-e0EpBUzWGdxO5bn2AP-2jh6I2DBp3vf-lK9rDQOQ_aG6XnOhDY">
@@ -1156,7 +1156,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" id="CloseBtn" class="btn btn-secondary" data-bs-dismiss="modal" style="display: none;">Close</button>
-                                    <button type="submit" id="AddBtn" class="btn btn-success bg-sfh-green">Add</button>
+{{--                                    <button type="submit" id="AddBtn" class="btn btn-success bg-sfh-green">Add</button>--}}
+                                    <button type="submit" id="btnClosePopup" class="btn btn-success bg-sfh-green">Close</button>
                                     <button type="submit" id="UpdateBtn" class="btn btn-success bg-sfh-green" style="display: none;">Update</button>
                                 </div>
                             </div>
@@ -1541,7 +1542,26 @@
 
 <script>
     $(document).ready(function () {
-        console.log('open');
-        $('#staticBackdrop').modal('show');
+        $("#btnClosePopup").click(function () {
+            // $("#ModalPopup").removeClass('show');
+            $("#ModalPopup").hide();
+            console.log('x');
+        });
     });
+
+    function submitForm() {
+        console.log('close');
+        $.ajax({
+            type:'GET',
+            url:'/questions',
+            data: {
+                _token: "{!! csrf_token() !!}"
+            },
+            success:function(data) {
+                $("body").html(data);
+            }
+        });
+    }
+
+
 </script>
